@@ -34,8 +34,8 @@
       <b-td>{{ stock.api_data.latest_price}}</b-td>
       <b-td>{{ stock.api_data.change }}</b-td>
       <b-td>{{ stock.shares }}</b-td>
-      <b-card><b-td><b-button variant="success" @click="buyStock">Buy</b-button></b-td>
-      <b-td><b-button variant="danger" @click="sellStock">Sell</b-button></b-td>
+      <b-card><b-td><b-button variant="success" @click="buyStock(stock.api_data.symbol)">Buy</b-button></b-td>
+      <b-td><b-button variant="danger" @click="sellStock(stock.api_data.symbol)">Sell</b-button></b-td>
       <b-td><b-button @click="removeFromPortfolio">Remove from Portfolio</b-button></b-td>
       </b-card>
     </b-tr>
@@ -74,13 +74,14 @@ export default {
 
       this.getQuotes()
     },
-    buyStock() {
-      fetch('http://localhost:3333/api/v1/buy_stock?symbol=' + this.symbol + '&name=' + this.name)
+    buyStock(symbol) {
+      console.log(symbol)
+      fetch('http://localhost:3333/api/v1/buy_stock?symbol=' + symbol + '&name=' + this.name)
 
       this.getQuotes()
     },
-    sellStock() {
-      fetch('http://localhost:3333/api/v1/sell_stock?symbol=' + this.symbol + '&name=' + this.name)
+    sellStock(symbol) {
+      fetch('http://localhost:3333/api/v1/sell_stock?symbol=' + symbol + '&name=' + this.name)
 
       this.getQuotes()
     }
