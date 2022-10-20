@@ -17,8 +17,8 @@
   Cash Balance: ${{available_cash}}
   <br>
   <b-table-simple bordered small responsive>
-    <b-thead>
-    <b-tr variant="dark">
+    <b-thead variant="primary">
+    <b-tr >
       <b-th scope="col">Symbol</b-th>
       <b-th scope="col">Price</b-th>
       <b-th scope="col">Change</b-th>
