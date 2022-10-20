@@ -72,11 +72,12 @@ export default {
       fetch('http://localhost:3333/api/v1/remove_stock_from_portfolio?symbol=' + symbol + '&name=' + this.name)
     },
     buyStock(symbol, quantity) {
-      debugger
       fetch('http://localhost:3333/api/v1/buy_stock?symbol=' + symbol + '&name=' + this.name + '&shares_quantity=' + quantity)
+      this.shares_quantity = {}
     },
     sellStock(symbol, quantity) {
       fetch('http://localhost:3333/api/v1/sell_stock?symbol=' + symbol + '&name=' + this.name + '&shares_quantity=' + quantity)
+      this.shares_quantity = {}
     }
   }
 }
