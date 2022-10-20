@@ -1,6 +1,6 @@
 <template>
   <center>
-  <h1><b>Karma Stock Ticker!</b></h1>
+  <h1><b>Karma Stock Game</b></h1>
   <input v-model="name" placeholder="Player Name"/>
   <br>
   <br>
