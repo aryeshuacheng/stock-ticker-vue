@@ -9,7 +9,7 @@
   <input v-model="symbol" placeholder="Symbol" />&nbsp&nbsp&nbsp<b-button variant="primary" @click="addStockToPortfolio">Add Stock</b-button>
   <br>
   <br>
-  <b-button variant="primary" @click="getQuotes">Get Quotes</b-button>
+  <b-button variant="primary" @click="getQuotes">Load Portfolio</b-button>
   <br>
   <br>
   <b>Portfolio</b>
