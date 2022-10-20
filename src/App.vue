@@ -36,7 +36,7 @@
       <b-td>{{ stock.shares }}</b-td>
       <b-card><b-td><b-button variant="success" @click="buyStock(stock.api_data.symbol)">Buy</b-button></b-td>
       <b-td><b-button variant="danger" @click="sellStock(stock.api_data.symbol)">Sell</b-button></b-td>
-      <b-td><b-button @click="removeFromPortfolio">Remove from Portfolio</b-button></b-td>
+      <b-td><b-button @click="removeFromPortfolio(stock.api_data.symbol)">Remove from Portfolio</b-button></b-td>
       </b-card>
     </b-tr>
     </b-tbody>
@@ -69,13 +69,12 @@ export default {
       fetch('http://localhost:3333/api/v1/add_stock_to_portfolio?symbol=' + this.symbol + '&name=' + this.name)
       this.getQuotes()
     },
-    removeFromPortfolio() {
-      fetch('http://localhost:3333/api/v1/remove_stock_from_portfolio?symbol=' + this.symbol + '&name=' + this.name)
+    removeFromPortfolio(symbol) {
+      fetch('http://localhost:3333/api/v1/remove_stock_from_portfolio?symbol=' + symbol + '&name=' + this.name)
 
       this.getQuotes()
     },
     buyStock(symbol) {
-      console.log(symbol)
       fetch('http://localhost:3333/api/v1/buy_stock?symbol=' + symbol + '&name=' + this.name)
 
       this.getQuotes()
