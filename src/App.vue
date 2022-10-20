@@ -22,20 +22,20 @@
       <b-th scope="col">Price</b-th>
       <b-th scope="col">Change</b-th>
       <b-th scope="col">Shares</b-th>
-      <b-th scope="col">Buy/Sell</b-th>
+      <b-th scope="col">Actions</b-th>
       <b-th scope="col"></b-th>
       <b-th scope="col"></b-th>
       <b-th scope="col"></b-th>
     </b-tr>
     </b-thead>
     <b-tbody>
-    <b-tr v-for="stock in stocks">
+    <b-tr v-for="stock in stocks" :key="stock.api_data.symbol">
       <b-td>{{ stock.api_data.symbol }}</b-td>
       <b-td>{{ stock.api_data.latest_price}}</b-td>
       <b-td>{{ stock.api_data.change }}</b-td>
       <b-td>{{ stock.shares }}</b-td>
-      <b-card><b-td><b-button variant="success" @click="buyStock(stock.api_data.symbol)">Buy</b-button></b-td>
-      <b-td><b-button variant="danger" @click="sellStock(stock.api_data.symbol)">Sell</b-button></b-td>
+      <b-card><input placeholder="Quantity" v-model="shares_quantity[stock.api_data.symbol]" type="text" /><b-td><b-button variant="success" @click="buyStock(Object.keys(this.shares_quantity)[0], this.shares_quantity[Object.keys(this.shares_quantity)[0]])">Buy</b-button></b-td>
+      <b-td><b-button variant="danger" @click="sellStock(Object.keys(this.shares_quantity)[0], this.shares_quantity[Object.keys(this.shares_quantity)[0]])">Sell</b-button></b-td>
       <b-td><b-button @click="removeFromPortfolio(stock.api_data.symbol)">Remove from Portfolio</b-button></b-td>
       </b-card>
     </b-tr>
@@ -48,8 +48,8 @@
 export default {
   data() {
     return {
-      name: 'Andrew',
-      shares: {},
+      name: 'Alan Cheng',
+      shares_quantity: {},
       stocks: [],
       symbol: 'GOOG',
       available_cash: 0
@@ -67,22 +67,16 @@ export default {
     },
     addStockToPortfolio() {
       fetch('http://localhost:3333/api/v1/add_stock_to_portfolio?symbol=' + this.symbol + '&name=' + this.name)
-      this.getQuotes()
     },
     removeFromPortfolio(symbol) {
       fetch('http://localhost:3333/api/v1/remove_stock_from_portfolio?symbol=' + symbol + '&name=' + this.name)
-
-      this.getQuotes()
     },
-    buyStock(symbol) {
-      fetch('http://localhost:3333/api/v1/buy_stock?symbol=' + symbol + '&name=' + this.name)
-
-      this.getQuotes()
+    buyStock(symbol, quantity) {
+      debugger
+      fetch('http://localhost:3333/api/v1/buy_stock?symbol=' + symbol + '&name=' + this.name + '&shares_quantity=' + quantity)
     },
-    sellStock(symbol) {
-      fetch('http://localhost:3333/api/v1/sell_stock?symbol=' + symbol + '&name=' + this.name)
-
-      this.getQuotes()
+    sellStock(symbol, quantity) {
+      fetch('http://localhost:3333/api/v1/sell_stock?symbol=' + symbol + '&name=' + this.name + '&shares_quantity=' + quantity)
     }
   }
 }
