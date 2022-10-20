@@ -22,7 +22,7 @@
       <b-th scope="col">Price</b-th>
       <b-th scope="col">Change</b-th>
       <b-th scope="col">Shares</b-th>
-      <b-th scope="col">Buy/Sell Quantity</b-th>
+      <b-th scope="col">Buy/Sell</b-th>
       <b-th scope="col"></b-th>
       <b-th scope="col"></b-th>
       <b-th scope="col"></b-th>
